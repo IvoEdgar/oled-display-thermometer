@@ -2,9 +2,9 @@ let tempNow = 0
 OLED12864_I2C.init(60)
 let index = 0
 OLED12864_I2C.showString(
-0,
-0,
-"Temp",
+2,
+1,
+"TEMP",
 1
 )
 let min = input.temperature()
@@ -17,8 +17,8 @@ basic.forever(function () {
         min = tempNow
     }
     OLED12864_I2C.showNumber(
-    5,
-    0,
+    7,
+    1,
     tempNow,
     1
     )
@@ -29,21 +29,21 @@ basic.forever(function () {
         index = 0
         OLED12864_I2C.clear()
         OLED12864_I2C.showString(
-        0,
-        0,
-        "Temp",
+        2,
+        1,
+        "TEMP",
         1
         )
     }
     if (input.buttonIsPressed(Button.A)) {
         OLED12864_I2C.showString(
-        0,
+        2,
         3,
-        "Min",
+        "MIN",
         1
         )
         OLED12864_I2C.showNumber(
-        5,
+        7,
         3,
         min,
         1
@@ -51,13 +51,13 @@ basic.forever(function () {
     }
     if (input.buttonIsPressed(Button.B)) {
         OLED12864_I2C.showString(
-        0,
+        2,
         3,
-        "Max",
+        "MAX",
         1
         )
         OLED12864_I2C.showNumber(
-        5,
+        7,
         3,
         max,
         1
