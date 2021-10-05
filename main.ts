@@ -1,14 +1,15 @@
-let tempNow = 0
-OLED12864_I2C.init(60)
+OLED.init(128, 64)
 let index = 0
-OLED12864_I2C.showString(
-2,
-1,
-"TEMP",
-1
-)
-let min = input.temperature()
-let max = input.temperature()
+OLED.writeStringNewLine("  TEMPERATURA  ")
+OLED.newLine()
+let tempNow = input.temperature()
+let min = tempNow
+let max = tempNow
+OLED.writeString(" TEMP: ")
+OLED.writeNum(tempNow)
+OLED.writeStringNewLine("°C")
+OLED.newLine()
+OLED.drawLoading(index)
 basic.forever(function () {
     tempNow = input.temperature()
     if (tempNow > max) {
@@ -16,24 +17,19 @@ basic.forever(function () {
     } else if (tempNow < min) {
         min = tempNow
     }
-    OLED12864_I2C.showNumber(
-    7,
-    1,
-    tempNow,
-    1
-    )
-    OLED12864_I2C.pixel(index, 32 - Math.map(tempNow, 15, 35, 0, 20), 1)
-    OLED12864_I2C.draw()
-    index += 1
-    if (index == 64) {
+    index += 10
+    if (index == 100) {
         index = 0
-        OLED12864_I2C.clear()
-        OLED12864_I2C.showString(
-        2,
-        1,
-        "TEMP",
-        1
-        )
+        OLED.clear()
+        OLED.writeStringNewLine("  TEMPERATURA  ")
+        OLED.newLine()
+        OLED.writeString(" TEMP: ")
+        OLED.writeNum(tempNow)
+        OLED.writeStringNewLine("°C")
+        OLED.newLine()
+        OLED.drawLoading(index)
+    } else {
+        OLED.drawLoading(index)
     }
     if (input.buttonIsPressed(Button.A)) {
         OLED12864_I2C.showString(
