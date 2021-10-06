@@ -1,21 +1,22 @@
 OLED.init(128, 64)
 let index = 0
-OLED.writeStringNewLine("      TEMPERATURA  ")
+let celsius = "" + String.fromCharCode(247) + "C"
+OLED.writeStringNewLine("     TEMPERATURA  ")
 OLED.newLine()
 let tempNow = input.temperature()
 let min = tempNow
 let max = tempNow
 OLED.writeString(" LAST: ")
 OLED.writeNum(tempNow)
-OLED.writeStringNewLine("'C")
+OLED.writeStringNewLine(celsius)
 OLED.newLine()
 OLED.writeString(" MIN:  ")
 OLED.writeNum(min)
-OLED.writeStringNewLine("'C")
+OLED.writeStringNewLine(celsius)
 OLED.newLine()
 OLED.writeString(" MAX:  ")
 OLED.writeNum(max)
-OLED.writeStringNewLine("'C")
+OLED.writeStringNewLine(celsius)
 basic.forever(function () {
     tempNow = input.temperature()
     if (tempNow > max) {
@@ -27,18 +28,18 @@ basic.forever(function () {
     if (index == 100) {
         index = 0
         OLED.clear()
-        OLED.writeStringNewLine("      TEMPERATURA  ")
+        OLED.writeStringNewLine("     TEMPERATURA  ")
         OLED.newLine()
         OLED.writeString(" LAST: ")
         OLED.writeNum(tempNow)
-        OLED.writeStringNewLine("'C")
+        OLED.writeStringNewLine(celsius)
         OLED.newLine()
         OLED.writeString(" MIN:  ")
         OLED.writeNum(min)
-        OLED.writeStringNewLine("'C")
+        OLED.writeStringNewLine(celsius)
         OLED.newLine()
         OLED.writeString(" MAX:  ")
         OLED.writeNum(max)
-        OLED.writeStringNewLine("'C")
+        OLED.writeStringNewLine(celsius)
     }
 })
