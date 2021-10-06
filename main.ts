@@ -32,31 +32,23 @@ basic.forever(function () {
         OLED.drawLoading(index)
     }
     if (input.buttonIsPressed(Button.A)) {
-        OLED12864_I2C.showString(
-        2,
-        3,
-        "MIN",
-        1
-        )
-        OLED12864_I2C.showNumber(
-        7,
-        3,
-        min,
-        1
-        )
+        OLED.clear()
+        OLED.writeStringNewLine("  TEMPERATURA  ")
+        OLED.newLine()
+        OLED.writeString("MIN: ")
+        OLED.writeNum(min)
+        OLED.writeStringNewLine("°C")
+        OLED.newLine()
+        OLED.drawLoading(index)
     }
     if (input.buttonIsPressed(Button.B)) {
-        OLED12864_I2C.showString(
-        2,
-        3,
-        "MAX",
-        1
-        )
-        OLED12864_I2C.showNumber(
-        7,
-        3,
-        max,
-        1
-        )
+        OLED.clear()
+        OLED.writeStringNewLine("  TEMPERATURA  ")
+        OLED.newLine()
+        OLED.writeString("MAX: ")
+        OLED.writeNum(max)
+        OLED.writeStringNewLine("°C")
+        OLED.newLine()
+        OLED.drawLoading(index)
     }
 })
