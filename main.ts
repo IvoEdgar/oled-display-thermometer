@@ -3,6 +3,7 @@ let index = 0
 let celsius = "" + String.fromCharCode(247) + "C"
 OLED.writeStringNewLine("     TEMPERATURA  ")
 OLED.newLine()
+OLED.newLine()
 let tempNow = input.temperature()
 let min = tempNow
 let max = tempNow
@@ -29,6 +30,7 @@ basic.forever(function () {
         index = 0
         OLED.clear()
         OLED.writeStringNewLine("     TEMPERATURA  ")
+        OLED.newLine()
         OLED.newLine()
         OLED.writeString(" LAST: ")
         OLED.writeNum(tempNow)
