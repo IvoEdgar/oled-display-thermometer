@@ -28,7 +28,6 @@ basic.forever(function () {
     index += 1
     if (index == 100) {
         index = 0
-        OLED.clear()
         OLED.writeStringNewLine("     TEMPERATURA  ")
         OLED.newLine()
         OLED.newLine()
