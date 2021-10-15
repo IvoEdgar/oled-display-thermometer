@@ -29,6 +29,7 @@ OLED.newLine()
 OLED.writeString(" UMIDADE: ")
 OLED.writeNum(Math.round(humiNow))
 OLED.writeStringNewLine("% ")
+basic.pause(1000)
 basic.forever(function () {
     basic.pause(200)
     dht11_dht22.queryData(
@@ -64,5 +65,6 @@ basic.forever(function () {
         OLED.writeString(" UMIDADE: ")
         OLED.writeNum(Math.round(humiNow))
         OLED.writeStringNewLine("% ")
+        basic.pause(1000)
     }
 })
