@@ -1,25 +1,45 @@
+basic.pause(200)
+dht11_dht22.queryData(
+DHTtype.DHT11,
+DigitalPin.P2,
+true,
+false,
+true
+)
 OLED.init(128, 64)
 let index = 0
-let celsius = "" + String.fromCharCode(247) + "C"
-OLED.writeStringNewLine("     TEMPERATURA  ")
+let celsius = "" + String.fromCharCode(247) + "C   "
+OLED.writeStringNewLine("  CONTROLE AMBIENTAL")
 OLED.newLine()
 OLED.newLine()
-let tempNow = input.temperature()
+let tempNow = dht11_dht22.readData(dataType.temperature)
+let humiNow = dht11_dht22.readData(dataType.humidity)
 let min = tempNow
 let max = tempNow
-OLED.writeString(" LAST: ")
-OLED.writeNum(tempNow)
+OLED.writeString(" AGORA: ")
+OLED.writeNum(Math.round(tempNow))
 OLED.writeStringNewLine(celsius)
 OLED.newLine()
-OLED.writeString(" MIN:  ")
-OLED.writeNum(min)
-OLED.writeStringNewLine(celsius)
+OLED.writeString(" MIN/MAX: ")
+OLED.writeNum(Math.round(min))
+OLED.writeString("/")
+OLED.writeNum(Math.round(max))
+OLED.writeStringNewLine(" ")
 OLED.newLine()
-OLED.writeString(" MAX:  ")
-OLED.writeNum(max)
-OLED.writeStringNewLine(celsius)
+OLED.writeString(" UMIDADE: ")
+OLED.writeNum(Math.round(humiNow))
+OLED.writeStringNewLine("% ")
 basic.forever(function () {
-    tempNow = input.temperature()
+    basic.pause(200)
+    dht11_dht22.queryData(
+    DHTtype.DHT11,
+    DigitalPin.P2,
+    true,
+    false,
+    true
+    )
+    tempNow = dht11_dht22.readData(dataType.temperature)
+    humiNow = dht11_dht22.readData(dataType.humidity)
     if (tempNow > max) {
         max = tempNow
     } else if (tempNow < min) {
@@ -28,19 +48,21 @@ basic.forever(function () {
     index += 1
     if (index == 100) {
         index = 0
-        OLED.writeStringNewLine("     TEMPERATURA  ")
+        OLED.writeStringNewLine("  CONTROLE AMBIENTAL")
         OLED.newLine()
         OLED.newLine()
-        OLED.writeString(" LAST: ")
-        OLED.writeNum(tempNow)
+        OLED.writeString(" AGORA: ")
+        OLED.writeNum(Math.round(tempNow))
         OLED.writeStringNewLine(celsius)
         OLED.newLine()
-        OLED.writeString(" MIN:  ")
-        OLED.writeNum(min)
-        OLED.writeStringNewLine(celsius)
+        OLED.writeString(" MIN/MAX: ")
+        OLED.writeNum(Math.round(min))
+        OLED.writeString("/")
+        OLED.writeNum(Math.round(max))
+        OLED.writeStringNewLine(" ")
         OLED.newLine()
-        OLED.writeString(" MAX:  ")
-        OLED.writeNum(max)
-        OLED.writeStringNewLine(celsius)
+        OLED.writeString(" UMIDADE: ")
+        OLED.writeNum(Math.round(humiNow))
+        OLED.writeStringNewLine("% ")
     }
 })
