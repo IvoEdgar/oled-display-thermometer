@@ -1,6 +1,6 @@
 basic.pause(200)
 dht11_dht22.queryData(
-DHTtype.DHT11,
+DHTtype.DHT22,
 DigitalPin.P2,
 true,
 false,
@@ -34,7 +34,7 @@ basic.pause(1000)
 basic.forever(function () {
     basic.pause(200)
     dht11_dht22.queryData(
-    DHTtype.DHT11,
+    DHTtype.DHT22,
     DigitalPin.P2,
     true,
     false,
@@ -51,7 +51,7 @@ basic.forever(function () {
     if (index == 100) {
         index = 0
         OLED.clear()
-        OLED.writeStringNewLine("  CONTROLE AMBIENTAL")
+        OLED.writeStringNewLine("   SENSOR   DHT22 ")
         OLED.newLine()
         OLED.newLine()
         OLED.writeString(" AGORA: ")
