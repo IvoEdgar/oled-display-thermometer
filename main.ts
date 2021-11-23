@@ -10,7 +10,7 @@ OLED.init(128, 64)
 let index = 0
 let celsius = "" + String.fromCharCode(247) + "C   "
 OLED.clear()
-OLED.writeStringNewLine("  CONTROLE AMBIENTAL")
+OLED.writeStringNewLine("   SENSOR   DHT22   ")
 OLED.newLine()
 OLED.newLine()
 let tempNow = Math.round(dht11_dht22.readData(dataType.temperature))
@@ -51,7 +51,7 @@ basic.forever(function () {
     if (index == 100) {
         index = 0
         OLED.clear()
-        OLED.writeStringNewLine("   SENSOR   DHT22 ")
+        OLED.writeStringNewLine("   SENSOR   DHT22   ")
         OLED.newLine()
         OLED.newLine()
         OLED.writeString(" AGORA: ")
